@@ -1,13 +1,19 @@
-import { useState, useContext } from "react"
-import { FeedbackContext } from "../../Contexts/Feedback.context"
+import { useState } from "react"
 import { v4 as uuidv4 } from "uuid";
+import { feedbacklist } from "../../Store/feedback/feedback.selector";
+import { addFeedbackItem } from "../../Store/feedback/feedback.action";
+import { useSelector,useDispatch } from "react-redux";
+
 
 const Feedback = () => {
 
     const [rating,setRating] = useState()
     const [description,setDescription] = useState()
 
-    const {addFeedback} = useContext(FeedbackContext)
+ 
+    const dispatch = useDispatch()
+   const feedbcklist = useSelector(feedbacklist)
+
 
     const descHandler = (e) => {
         setDescription(e.target.value)
@@ -16,7 +22,8 @@ const Feedback = () => {
 
     const submitFeedback = (e)=>{
         e.preventDefault()
-        addFeedback({'rating': rating,'description': description, 'id':uuidv4()})
+        dispatch(addFeedbackItem(feedbcklist, {'rating': rating,'description': description, 'id':uuidv4()}))
+       
        
     }
 

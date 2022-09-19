@@ -1,12 +1,13 @@
-import { useContext } from "react"
-import { FeedbackContext } from "../../Contexts/Feedback.context"
+
+import { useSelector } from "react-redux"
+import { feedbackCount } from "../../Store/feedback/feedback.selector"
 
 const AvgScore = () => {
 
-    const {feedbackCount} = useContext(FeedbackContext)
+    const feedbackCnt = useSelector(feedbackCount)
 
     return (
-        <div>Avg Score {feedbackCount}</div>
+        <div>Avg Score {feedbackCnt}</div>
 
     )
 }

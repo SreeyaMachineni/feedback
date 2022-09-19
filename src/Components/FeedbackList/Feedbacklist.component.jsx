@@ -1,14 +1,16 @@
-import { useContext } from "react"
-import { FeedbackContext } from "../../Contexts/Feedback.context"
+
+// import { FeedbackContext } from "../../Contexts/Feedback.context"
+import { useSelector } from "react-redux"
+import { feedbacklist } from "../../Store/feedback/feedback.selector"
 
 const Feedbacklist = () => {
 
-    const {feedbacklist} = useContext(FeedbackContext)
-    console.log(feedbacklist)
+    const feedbacklst = useSelector(feedbacklist)
+    console.log(feedbacklst)
     return (
         <div>
             {
-                feedbacklist?.map((fl)=> (
+                feedbacklst?.map((fl)=> (
                     <div key={fl.id}>
                         {fl.rating} - {fl.description}
                     </div>
